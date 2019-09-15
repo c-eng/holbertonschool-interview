@@ -14,13 +14,11 @@ int check_cycle(listint_t *list)
 {
 	listint_t *slow;
 	listint_t *fast;
-	// test function input for validity
+
 	if (!list || !(list->next))
 		return (0);
-	// assign strider variables to list head
 	slow = list;
 	fast = list->next;
-	// traverse singly linked list with striders
 	while (fast->next)
 	{
 		fast = fast->next;
