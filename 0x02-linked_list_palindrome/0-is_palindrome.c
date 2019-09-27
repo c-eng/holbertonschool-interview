@@ -15,7 +15,7 @@ int is_palindrome(listint_t **head)
 	int count = 0;
 	int index = 0;
 	listint_t *strider = NULL;
-	int *array = NULL;
+	int array[1000];
 
 	if (!head)
 		return (0);
@@ -29,9 +29,6 @@ int is_palindrome(listint_t **head)
 	}
 	if (count == 1)
 		return (1);
-	array = malloc(sizeof(int) * count);
-	if (!array)
-		return (0);
 	strider = *head;
 	while (strider)
 	{
@@ -43,10 +40,8 @@ int is_palindrome(listint_t **head)
 	{
 		if (array[index] != array[(count - 1) - index])
 		{
-			free(array);
 			return (0);
 		}
 	}
-	free(array);
 	return (1);
 }
