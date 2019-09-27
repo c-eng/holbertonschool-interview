@@ -41,7 +41,6 @@ int is_palindrome(listint_t **head)
 	}
 	for (index = 0; index < (count / 2); index++)
 	{
-		printf("%i vs %i\n", array[index], array[(count - 1) - index]);
 		if (array[index] != array[(count - 1) - index])
 		{
 			free(array);
