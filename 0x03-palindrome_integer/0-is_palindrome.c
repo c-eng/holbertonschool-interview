@@ -59,7 +59,7 @@ int is_palindrome(unsigned long n)
 	unsigned long t = 10;
 	int output;
 
-	while (t < n)
+	while (t <= n)
 	{
 		t = t * 10;
 		c++;
