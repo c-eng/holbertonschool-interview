@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "lists.h"
 
 /**
@@ -11,39 +12,44 @@
 
 int is_palindrome(listint_t **head)
 {
-	listint_t *top = NULL;
+	listint_t **top = NULL;
 	listint_t *bot = NULL;
-	listint_t *bob = NULL;
+	int result = 0;
 
 	if (!head)
-		return (0);
-	if (!*head)
+                return (0);
+        if (!*head)
+                return (1);
+	top = head;
+	bot = *head;
+	result = mover(top, bot);
+	return (result);
+}
+
+/**
+ * mover - Recursive function to check a linked list for palindromeness
+ *
+ * @top: top value to check
+ * @bot: bottom value to check
+ *
+ * Return: 1 or 0;
+ */
+
+int mover(listint_t **top, listint_t *bot)
+{
+	int result = -1;
+	int output = -1;
+
+	if (bot == NULL)
 		return (1);
-	top = *head;
-	while (top)
-	{
-		bot = top;
-		bob = bot->next;
-		while (bob && bob->next)
-		{
-			bot = bob;
-			bob = bob->next;
-		}
-		if (top->n == bob->n)
-			;
-		else
-			return (0);
-		free(bob);
-		bot->next = NULL;
-		if (top->next)
-		{
-			if (top->next->next)
-				top = top->next;
-			else
-				break;
-		}
-		else
-			break;
-	}
-	return (1);
+	result = mover(top, bot->next);
+	if (result == 0)
+		return (0);
+	if ((*top)->n == bot->n)
+		output = 1;
+	else
+		output = 0;
+	*top = (*top)->next;
+	return (output);
+
 }
