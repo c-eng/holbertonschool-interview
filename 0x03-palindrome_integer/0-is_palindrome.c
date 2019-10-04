@@ -2,28 +2,42 @@
 #include "palindrome.h"
 
 /**
+ * bam - Not pow, unsigned longs only
+ *
+ * @base: base number
+ * @exp: exponent
+ *
+ * Return: base^exp
+ */
+
+unsigned long bam(unsigned long base, unsigned long exp)
+{
+	unsigned long result = 1;
+	unsigned long i = 0;
+
+	for (; i < exp; i++)
+		result = result * base;
+	return (result);
+}
+
+/**
  * palindrome_deux - determines palindromeness of an integer
  *
  * @n: integer to determine
- * @count: digit count of integer
+ * @c: digit count of integer
  *
  * Return: 1 if palindrome, 0 otherwise
  */
 
-int palindrome_deux(unsigned long n, int count)
+int palindrome_deux(unsigned long n, unsigned long c)
 {
-	int i = 0;
-	int darray[count];
-	unsigned long digit = 10;
+	unsigned long i = 0;
+	unsigned long t = 10;
 
-	for (; i < count; i++)
+	for (i = 0; i < c / 2; i++)
 	{
-		darray[i] = ((n % digit) / (digit / 10));
-		digit = digit * 10;
-	}
-	for (i = 0; i < count / 2; i++)
-	{
-		if (darray[i] == darray[count - 1 - i])
+		if ((n % bam(t, i + 1)) / bam(t, i) ==
+		    (n % bam(t, c - i)) / bam(t, c - (i + 1)))
 			continue;
 		else
 			return (0);
@@ -41,19 +55,19 @@ int palindrome_deux(unsigned long n, int count)
 
 int is_palindrome(unsigned long n)
 {
-	int digit_count = 1;
-	unsigned long digit = 10;
+	unsigned long c = 1;
+	unsigned long t = 10;
 	int output;
 
-	while (digit < n)
+	while (t < n)
 	{
-		digit = digit * 10;
-		digit_count++;
+		t = t * 10;
+		c++;
 	}
-	if (digit_count == 1)
+	if (c == 1)
 		return (1);
 	if (n % 10 == 0)
 		return (0);
-	output = palindrome_deux(n, digit_count);
+	output = palindrome_deux(n, c);
 	return (output);
 }
