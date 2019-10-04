@@ -64,10 +64,6 @@ int is_palindrome(unsigned long n)
 		t = t * 10;
 		c++;
 	}
-	if (c == 1)
-		return (1);
-	if (n % 10 == 0)
-		return (0);
 	output = palindrome_deux(n, c);
 	return (output);
 }
