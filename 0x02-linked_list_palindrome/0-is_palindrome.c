@@ -1,60 +1,49 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include "lists.h"
 
 /**
- * palindrome_pal - helper for is_palindrome
+ * is_palindrome - checks if a linked list is a palindrome
  *
- * @head: head of your pal
- * @count: how many pals you have
+ * @head: head of the linked list
  *
  * Return: 1 if palindrome, 0 otherwise
  */
 
-int palindrome_pal(listint_t *head, int count)
-{
-	int index = 0;
-	int array[count];
-	listint_t *strider = head;
-
-	while (strider)
-	{
-		array[index] = strider->n;
-		strider = strider->next;
-		index++;
-	}
-	for (index = 0; index < (count / 2); index++)
-	{
-		if (array[index] != array[(count - 1) - index])
-			return (0);
-	}
-	return (1);
-}
-
-/**
- * is_palindrome - Determines if a linked list is a palindrome
- *
- * @head: pointer to head of a list
- *
- * Return: 1 if palindrome, 0 otherwise.
- */
-
 int is_palindrome(listint_t **head)
 {
-	int count = 0;
-	listint_t *strider = NULL;
+	listint_t *top = NULL;
+	listint_t *bot = NULL;
+	listint_t *bob = NULL;
 
 	if (!head)
 		return (0);
 	if (!*head)
 		return (1);
-	strider = *head;
-	while (strider)
+	top = *head;
+	while (top)
 	{
-		strider = strider->next;
-		count++;
+		bot = top;
+		bob = bot->next;
+		while (bob && bob->next)
+		{
+			bot = bob;
+			bob = bob->next;
+		}
+		if (top->n == bob->n)
+			;
+		else
+			return (0);
+		free(bob);
+		bot->next = NULL;
+		if (top->next)
+		{
+			if (top->next->next)
+				top = top->next;
+			else
+				break;
+		}
+		else
+			break;
 	}
-	if (count == 1)
-		return (1);
-	return (palindrome_pal(*head, count));
+	return (1);
 }
