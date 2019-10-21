@@ -67,10 +67,15 @@ void menger(int level)
 
 	if (level < 0)
 		return;
-	arrax = (int *)calloc(level, sizeof(int));
-	array = (int *)calloc(level, sizeof(int));
+	arrax = malloc(sizeof(int) * level);
+	array = malloc(sizeof(int) * level);
 	if (!arrax || !array)
 		return;
+	for (i = 0; i < level; i++)
+	{
+		arrax[i] = 0;
+		array[i] = 0;
+	}
 	size = (int)pow(3, level);
 	for (j = 0; j < size; j++)
 	{
