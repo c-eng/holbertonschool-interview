@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include "sandpiles.h"
 
+/**
+ * print_grid - prints a 3x3 grid
+ *
+ * @grid: grid to print
+ *
+ * Return: void
+ */
+
 static void print_grid(int grid[3][3])
 {
 	int i, j;
@@ -87,7 +95,7 @@ int is_done(int *grid)
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	int *grid3 = &grid1[0][0];
-	int i, j, done;
+	int i, j, done = 0;
 
 	for (i = 0; i < 3; i++)
 	{
