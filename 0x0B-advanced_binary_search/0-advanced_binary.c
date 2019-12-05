@@ -66,6 +66,8 @@ int advanced_binary(int *array, size_t size, int value)
 {
 	int found;
 
+	if (!array || size == 0)
+		return (-1);
 	found = binary_search(array, 0, size - 1, value);
 	return (found);
 }
