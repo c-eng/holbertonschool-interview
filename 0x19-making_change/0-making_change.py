@@ -13,12 +13,13 @@ def makeChange(coins, total):
         return -1
     coins.sort()
     coins.reverse()
-    "or use list.length"
     change = 0
     for coin in coins:
+        if coin < 0:
+            break
         temp = total // coin
         change += temp
         total -= (temp * coin)
-    if total > 0:
+    if total != 0:
         return -1
     return change
