@@ -10,7 +10,7 @@ def makeChange(coins, total):
     change making function
     """
     if total < 1:
-        return -1
+        return 0
     coins.sort()
     coins.reverse()
     change = 0
@@ -21,7 +21,5 @@ def makeChange(coins, total):
         change += temp
         total -= (temp * coin)
     if total != 0:
-        "if there are negative coins see if you can add beyond the value and"
-        "subtract back to the value"
         return -1
     return change
