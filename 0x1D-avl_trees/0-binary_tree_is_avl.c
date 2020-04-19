@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 #include "binary_trees.h"
 
 /**
@@ -13,7 +11,7 @@ int binary_tree_is_avl(const binary_tree_t *tree)
 {
 	if (!tree)
 		return (0);
-	if (bst_check(tree, INT_MIN, INT_MAX) != 1)
+	if (bst_check(tree, -2147483648, 2147483647) != 1)
 		return (0);
 	if (b_check(tree) != 1)
 		return (0);
