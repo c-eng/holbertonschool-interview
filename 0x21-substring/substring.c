@@ -49,6 +49,7 @@ int *find_substring(char const *s, char const **words, int nb_words, int *n)
 nextseg:
 		i++;
 	}
+	free(temp);
 	*n = count;
 	return (pmark);
 }
